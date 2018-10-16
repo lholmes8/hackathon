@@ -1,4 +1,4 @@
-Station number,Location,BNG_X,BNG_Y,Latitude,Longfitude,IG_Easting,IG_Northing
+Station number,Location,BNG_X,BNG_Y,LATITUDE,LONGITUDE,IG_Easting,IG_Northing
 3902,City Hall,146183.2,529538.9,54.597,-5.92995,333769.8,374065.17
 3903,Victoria Square/Victoria Street,146633.9,529644.9,54.5982,-5.92309,334209.7,374209.16
 3904,Donegall Quay,146786.3,530003.4,54.6015,-5.92104,334331,374579.37

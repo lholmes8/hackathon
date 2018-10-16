@@ -1,4 +1,4 @@
-Crime ID,Month,Reported by,Falls within,Longitude,Latitude,Location,LSOA code,LSOA name,Crime type,Last outcome category,Context
+Crime ID,Month,Reported by,Falls within,LONGITUDE,LATITUDE,Location,LSOA code,LSOA name,Crime type,Last outcome category,Context
 ,2018-08,Police Service of Northern Ireland,Police Service of Northern Ireland,-5.933559,54.594177,On or near ,,,Anti-social behaviour,,
 ,2018-08,Police Service of Northern Ireland,Police Service of Northern Ireland,-6.776758,54.489648,On or near Park Avenue,,,Anti-social behaviour,,
 ,2018-08,Police Service of Northern Ireland,Police Service of Northern Ireland,-6.009697,54.061298,On or near Greencastle Street,,,Anti-social behaviour,,
