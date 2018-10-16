@@ -15,7 +15,7 @@ playcentres:("***FF";enlist",")0:`:rawdata/playcentresdata.csv
 pitchesplayingfields:("***FF";enlist",")0:`:rawdata/pitchesplayingfieldsdata.csv
 crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 
-distance:0.01
+distance:0.0015
 
 exceptions:`parksdata`bikerentals`carparktariff
 // big update boy
