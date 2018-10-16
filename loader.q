@@ -1,4 +1,5 @@
 \p 5555
+
 parksdata:("***FF";enlist",")0:`:rawdata/parksdata.csv
 bikerentals:("*SJJJJ";enlist",")0:`:rawdata/BikeRentals.csv
 bikestations:("J*FFFFFF";enlist",")0:`:rawdata/BikeStations.csv
@@ -14,8 +15,21 @@ playcentres:("***FF";enlist",")0:`:rawdata/playcentresdata.csv
 pitchesplayingfields:("***FF";enlist",")0:`:rawdata/pitchesplayingfieldsdata.csv
 crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 
-distance:0.0015
+distance:0.01
 
 exceptions:`parksdata`bikerentals`carparktariff
 // big update boy
-{[x] ![x;();0b;enlist[`park]!enlist ((';{[x;y]parksdata[`NAME] where all distance>abs parksdata[`LONGITUDE`LATITUDE]-(x;y)});`LONGITUDE;`LATITUDE)]}each tables[]except exceptions
+addparks:{[x] ![x;();0b;enlist[`park]!enlist ((';{[x;y]parksdata[`NAME] where all distance>abs parksdata[`LONGITUDE`LATITUDE]-(x;y)});`LONGITUDE;`LATITUDE)]}
+addparks each tables[]except exceptions
+
+// ratings
+ratings:([]park:`$();facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$())
+ratingagg:([park:`$()] facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$())
+d:()!()
+d[`ratings]:{[t;x]
+	t insert x;
+	`ratingagg upsert x}
+
+upd:{[t;x]
+	d[t] . (t;x) }	
+
