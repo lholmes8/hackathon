@@ -15,7 +15,7 @@ crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 
 distance:0.0015
 
-exceptions:`parksdata`bikerentals`carparktariff`ratingagg
+exceptions:`parksdata`bikerentals`carparktariff`ratingagg`ratings`ratingtot
 // big update boy
 
 .api.getdata:{[t;c;p] c:cols t;?[t;enlist ((/:;in);(enlist p);`park);0b;{x!x}(),c]}
@@ -33,13 +33,18 @@ update score:floor score%(0.1*max score)from update score:count i by park from `
 
 // ratings
 ratings:([]park:`$();facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$())
-ratingagg:([park:`$()] facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$())
+ratingtot:([park:`$()] facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$();cnt:`int$())
+ratingagg:([park:`$()] facilities:`float$();cleanliness:`float$();childfriendliness:`float$();safety:`float$();totalrating:`float$())
 d:()!()
 d[`ratings]:{[t;x]
 	t insert x;
-	`ratingagg upsert x}
+	park:x 0;
+	`ratingtot upsert (enlist[`park]!enlist[park]),(0^ratingtot park) + 1_x,1;
+	a:%[`cnt _ ratingtot park;ratingtot[park]`cnt];
+	`ratingagg upsert park,value[a],avg value a
+	}
 
 upd:{[t;x]
-	d[t] . (t;x) }	
+	d[t] . (t;x)} 	
 
-
+.api.cooljoin:{[x] raze{[x]([]typ:count[a]#x),'a:`park`LONGITUDE`LATITUDE#value x}'[x]}
