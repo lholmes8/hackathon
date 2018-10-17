@@ -13,12 +13,10 @@ playcentres:("***FF";enlist",")0:`:rawdata/playcentresdata.csv
 pitchesplayingfields:("***FF";enlist",")0:`:rawdata/pitchesplayingfieldsdata.csv
 crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 
-distance:0.01
+distance:0.0015
 
 exceptions:`parksdata`bikerentals`carparktariff`ratingagg
 // big update boy
-
-{[x] ![x;();0b;enlist[`park]!enlist ((';{[x;y]parksdata[`NAME] where all distance>abs parksdata[`LONGITUDE`LATITUDE]-(x;y)});`LONGITUDE;`LATITUDE)]}each tables[]except exceptions
 
 .api.getdata:{[t;c;p] c:cols t;?[t;enlist ((/:;in);(enlist p);`park);0b;{x!x}(),c]}
 
@@ -27,6 +25,11 @@ addparks each tables[]except exceptions
 
 splitparks:{[tbl]@[tbl where count each tbl `park;`park;:;raze tbl `park]}
 m set'splitparks each m:tables[]except exceptions
+
+update score:floor score%(0.1*max score)from update score:count i by park from `carparklocation;
+update score:floor score%(0.1*max score)from update score:count i by park from `crimes;
+update score:floor score%(0.1*max score)from update score:count i by park from `toiletsdata;
+update score:floor score%(0.1*max score)from update score:count i by park from `playgrounds;
 
 // ratings
 ratings:([]park:`$();facilities:`int$();cleanliness:`int$();childfriendliness:`int$();safety:`int$())
