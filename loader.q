@@ -16,6 +16,7 @@ crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 distance:0.0015
 
 exceptions:`parksdata`bikerentals`carparktariff`ratingagg`ratings`ratingtot
+scored:`carparklocation`crimes`toiletsdata`playgrounds
 // big update boy
 
 .api.getdata:{[t;c;p] c:cols t;?[t;enlist ((/:;in);(enlist p);`park);0b;{x!x}(),c]}
@@ -48,3 +49,4 @@ upd:{[t;x]
 	d[t] . (t;x)} 	
 
 .api.cooljoin:{[x] raze{[x]([]typ:count[a]#x),'a:`park`LONGITUDE`LATITUDE#value x}'[x]}
+.api.aggscores:0^(uj/){(`park;.Q.dd[`score;x])xcol select avg score by park from `park`score#value x}'[scored]
