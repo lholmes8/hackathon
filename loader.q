@@ -1,4 +1,3 @@
-\p 5555
 parksdata:("***FF";enlist",")0:`:rawdata/parksdata.csv
 bikerentals:("*SJJJJ";enlist",")0:`:rawdata/BikeRentals.csv
 bikestations:("J*FFFFFF";enlist",")0:`:rawdata/BikeStations.csv
@@ -14,8 +13,10 @@ playcentres:("***FF";enlist",")0:`:rawdata/playcentresdata.csv
 pitchesplayingfields:("***FF";enlist",")0:`:rawdata/pitchesplayingfieldsdata.csv
 crimes:("S***FF*S****";enlist",")0:`:rawdata/crimedata.csv
 
-distance:0.0015
+distance:0.01
 
 exceptions:`parksdata`bikerentals`carparktariff
 // big update boy
 {[x] ![x;();0b;enlist[`park]!enlist ((';{[x;y]parksdata[`NAME] where all distance>abs parksdata[`LONGITUDE`LATITUDE]-(x;y)});`LONGITUDE;`LATITUDE)]}each tables[]except exceptions
+
+.api.getdata:{[t;c;p] c:cols t;?[t;enlist ((/:;in);(enlist p);`park);0b;{x!x}(),c]}
